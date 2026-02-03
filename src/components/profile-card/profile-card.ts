@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
   imports: [ImgUrlPipe],
   standalone: true,
   templateUrl: './profile-card.html',
-  styleUrl: './profile-card.css',
 })
 export class ProfileCard {
   @Input() profile!: IProfile;

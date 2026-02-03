@@ -7,7 +7,6 @@ import { Component, inject } from '@angular/core';
   selector: 'app-search-page',
   imports: [ProfileCard],
   templateUrl: './search-page.html',
-  styleUrl: './search-page.css',
 })
 export class SearchPage {
   private profileService = inject(Profile);
