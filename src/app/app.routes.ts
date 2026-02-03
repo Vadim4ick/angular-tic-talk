@@ -1,3 +1,4 @@
+import { canActivateAuth } from '@/shared/guards/access.guard';
 import { MainLayout } from '@/shared/layouts/main-layout/main-layout';
 import { Routes } from '@angular/router';
 
@@ -15,6 +16,7 @@ export const routes: Routes = [
         loadComponent: () => import('@/pages/profile-page/profile-page').then((m) => m.ProfilePage),
       },
     ],
+    canActivate: [canActivateAuth],
   },
 
   {

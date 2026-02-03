@@ -4,6 +4,7 @@ import { UbButtonDirective } from '@/shared/ui/button';
 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '@/shared/service/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -12,6 +13,7 @@ import { Auth } from '@/shared/service/auth';
 })
 export class LoginPage {
   authService = inject(Auth);
+  router = inject(Router);
 
   form = new FormGroup({
     telegram: new FormControl('', {
@@ -27,7 +29,7 @@ export class LoginPage {
   submit() {
     if (this.form.valid) {
       this.authService.login(this.form.getRawValue()).subscribe({
-        next: (res) => console.log('OK', res),
+        next: (res) => this.router.navigate(['']),
         error: (err) => console.error('ERR', err),
       });
     }
