@@ -33,6 +33,7 @@
     "@ng-icons/lucide": "^33.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "ngx-cookie-service": "^21.1.0",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",

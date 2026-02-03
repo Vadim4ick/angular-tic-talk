@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { TokenRes } from '../types/auth.types';
 import { tap } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,16 +10,21 @@ import { tap } from 'rxjs';
 export class Auth {
   constructor(private http: HttpClient) {}
 
+  baseApiUrl = 'https://icherniakov.ru/yt-course';
+  cookieService = inject(CookieService);
+
   tokens: { access_token: string | null; refresh_token: string | null } = {
     access_token: null,
     refresh_token: null,
   };
 
   getToken() {
+    if (!this.tokens.access_token) {
+      this.tokens.access_token = this.cookieService.get('access_token');
+    }
+
     return !!this.tokens.access_token;
   }
-
-  baseApiUrl = 'https://icherniakov.ru/yt-course';
 
   login(payload: { telegram: string; password: string }) {
     const formData = new FormData();
@@ -30,6 +36,9 @@ export class Auth {
       tap((val) => {
         this.tokens.access_token = val.access_token;
         this.tokens.refresh_token = val.refresh_token;
+
+        this.cookieService.set('access_token', val.access_token);
+        this.cookieService.set('refresh_token', val.refresh_token);
       }),
     );
   }

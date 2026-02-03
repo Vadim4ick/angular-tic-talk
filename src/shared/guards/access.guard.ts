@@ -11,3 +11,13 @@ export const canActivateAuth = () => {
 
   return inject(Router).createUrlTree(['/login']);
 };
+
+export const canActivateAuthNot = () => {
+  const isLoggedIn = inject(Auth).getToken();
+
+  if (!isLoggedIn) {
+    return true;
+  }
+
+  return inject(Router).createUrlTree(['/']);
+};

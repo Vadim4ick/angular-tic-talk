@@ -1,4 +1,4 @@
-import { canActivateAuth } from '@/shared/guards/access.guard';
+import { canActivateAuth, canActivateAuthNot } from '@/shared/guards/access.guard';
 import { MainLayout } from '@/shared/layouts/main-layout/main-layout';
 import { Routes } from '@angular/router';
 
@@ -22,6 +22,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('@/pages/login-page/login-page').then((m) => m.LoginPage),
+    canActivate: [canActivateAuthNot],
   },
   {
     path: '**',
