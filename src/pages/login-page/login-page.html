@@ -1,8 +1,22 @@
 <div class="h-dvh">
   <div class="container mx-auto my-0 h-full">
     <div class="grid grid-cols-2 items-center h-full">
-      <form action="">
+      <form action="" class="flex flex-col gap-5" [formGroup]="form" (ngSubmit)="submit()">
         <h1 class="text-2xl font-bold">Вход</h1>
+
+        <div class="flex flex-col gap-4 max-w-87.5">
+          <label class="flex flex-col gap-1 cursor-pointer">
+            <span>Телеграм</span>
+            <input formControlName="telegram" type="text" ubInput />
+          </label>
+
+          <label class="flex flex-col gap-1 cursor-pointer">
+            <span>Пароль</span>
+            <input formControlName="password" type="password" ubInput />
+          </label>
+
+          <button class="mt-2" type="submit" ubButton>Войти</button>
+        </div>
       </form>
 
       <img src="/logo-bg.svg" />
