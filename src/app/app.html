@@ -1,3 +1,9 @@
-<h1>Hello world</h1>
-
-<app-profile-card></app-profile-card>
+<div class="">
+  @if (loading) {
+    <div class="loader">Загрузка...</div>
+  } @else {
+    @for (profile of profiles; track profile.id) {
+      <app-profile-card [profile]="profile"></app-profile-card>
+    }
+  }
+</div>
