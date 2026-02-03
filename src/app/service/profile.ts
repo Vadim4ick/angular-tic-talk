@@ -6,7 +6,7 @@ import { IProfile } from '../types/profile.types';
   providedIn: 'root',
 })
 export class Profile {
-  http = inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
   baseApiUrl = 'https://icherniakov.ru/yt-course';
 

@@ -1,4 +1,4 @@
-<div class="">
+<div class="grid gap-2">
   @if (loading) {
     <div class="loader">Загрузка...</div>
   } @else {
@@ -6,4 +6,6 @@
       <app-profile-card [profile]="profile"></app-profile-card>
     }
   }
+
+  {{ loading }}
 </div>

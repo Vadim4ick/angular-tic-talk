@@ -1,27 +1,29 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ProfileCard } from './profile-card/profile-card';
 import { Profile } from './service/profile';
 import { IProfile } from './types/profile.types';
 
 @Component({
   selector: 'app-root',
-  imports: [ProfileCard],
   standalone: true,
+  imports: [ProfileCard],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css'],
 })
 export class App {
-  profileService = inject(Profile);
+  private profileService = inject(Profile);
+
   profiles: IProfile[] = [];
   loading = true;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.profileService.getTestAccount().subscribe({
       next: (data) => {
         this.profiles = data;
         this.loading = false;
       },
-      error: () => {
+      error: (err) => {
+        console.error(err);
         this.loading = false;
       },
     });
