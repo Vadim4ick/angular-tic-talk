@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { IProfile } from '../types/profile.types';
+import { Injectable } from '@angular/core';
+import { IProfile } from '@/shared/types/profile.types';
 
 @Injectable({
   providedIn: 'root',

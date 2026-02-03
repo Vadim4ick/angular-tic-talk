@@ -1,6 +1,6 @@
+import { ImgUrlPipe } from '@/shared/helpers/pipes/img-url-pipe';
+import { IProfile } from '@/shared/types/profile.types';
 import { Component, Input } from '@angular/core';
-import { IProfile } from '../types/profile.types';
-import { ImgUrlPipe } from '../helpers/pipes/img-url-pipe';
 
 @Component({
   selector: 'app-profile-card',
