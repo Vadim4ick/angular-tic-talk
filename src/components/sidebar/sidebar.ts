@@ -1,8 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe, JsonPipe, NgComponentOutlet } from '@angular/common';
+import { sidebarMenu } from '@/shared/const/navbar.const';
+import { RouterLink } from '@angular/router';
+import { Profile } from '@/shared/service/profile';
+import { SubscriberCard } from '@/shared/ui/subscriber-card/subscriber-card';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [NgComponentOutlet, RouterLink, AsyncPipe, SubscriberCard],
+  standalone: true,
+  styleUrls: ['./sidebar.scss'],
   templateUrl: './sidebar.html',
 })
-export class Sidebar {}
+export class Sidebar {
+  profileService = inject(Profile);
+  me = inject(Profile).me;
+
+  subscribers$ = this.profileService.getSubscribers();
+
+  sidebarMenu = sidebarMenu;
+}

@@ -1,1 +1,52 @@
-<p>sidebar works!</p>
+<div>
+  <img src="/logo-bg.svg" class="size-12.5 mb-5" />
+
+  <nav>
+    <ul class="grid gap-2">
+      @for (item of sidebarMenu; track item.id) {
+        <li class="py-2 px-4 hover:bg-[#161616] rounded-[2px] cursor-pointer group">
+          <button
+            class="flex items-center gap-2 cursor-pointer text-white group-hover:text-[#AE7AFF] transition-all"
+          >
+            <ng-container
+              *ngComponentOutlet="
+                item.icon;
+                inputs: {
+                  size: 16,
+                }
+              "
+            ></ng-container>
+
+            <span>{{ item.title }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="pl-4 flex flex-col gap-5">
+    <p class="text-sm text-white/80 mt-5">Подписчики</p>
+
+    <div class="flex flex-col gap-1.5">
+      @for (subscriber of subscribers$ | async; track subscriber.id) {
+        <app-subscriber-card [profile]="subscriber"></app-subscriber-card>
+      }
+    </div>
+
+    <a [routerLink]="['/profile']" class="text-sm text-white/80 hover:text-[#AE7AFF] transition-all"
+      >Все подписчики
+    </a>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-6 py-1 px-4 bg-[#161616] rounded-[2px]">
+  @if (me(); as me) {
+    @if (me.avatarUrl) {
+      <img [src]="me.avatarUrl" [alt]="me.username" class="size-8" />
+    } @else {
+      <img src="/avatar.png" class="size-8" />
+    }
+
+    <p class="text-sm font-bold">{{ me.username }}</p>
+  }
+</div>
