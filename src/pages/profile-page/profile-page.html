@@ -1,5 +1,9 @@
-<!-- <app-profile-header [profile]="profile()"></app-profile-header> -->
-
 @if (profile$ | async; as profile) {
-  <app-profile-header [profile]="profile"></app-profile-header>
+  <header class="flex items-center gap-4 w-full justify-between">
+    <app-profile-header [profile]="profile"></app-profile-header>
+
+    <a [routerLink]="['/settings']" class="flex items-center gap-1">
+      Редактировать <lucide-icon name="settings2" class="size-4" />
+    </a>
+  </header>
 }

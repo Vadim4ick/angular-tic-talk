@@ -7,7 +7,6 @@ import { Profile } from '@/shared/service/profile';
   selector: 'app-main-layout',
   imports: [RouterOutlet, Sidebar],
   templateUrl: './main-layout.html',
-  styleUrls: ['./main-layout.scss'],
 })
 export class MainLayout {
   profileService = inject(Profile);

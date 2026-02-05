@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { ProfileHeader } from '@/components/profile-header/profile-header';
 import { Profile } from '@/shared/service/profile';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { IconsModule } from '@/shared/lucide/lucide-module';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileHeader, AsyncPipe],
+  standalone: true,
+  imports: [ProfileHeader, AsyncPipe, IconsModule, RouterLink],
   templateUrl: './profile-page.html',
 })
 export class ProfilePage {
