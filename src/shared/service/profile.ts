@@ -24,6 +24,10 @@ export class Profile {
       .pipe(map((val) => val.items.slice(0, 3)));
   }
 
+  getAccount(id: number) {
+    return this.http.get<IProfile>(`${this.baseApiUrl}/account/${id}`);
+  }
+
   getMe() {
     return this.http.get<IProfile>(`${this.baseApiUrl}/account/me`).pipe(
       tap((val) => {

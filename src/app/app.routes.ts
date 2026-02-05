@@ -12,7 +12,7 @@ export const routes: Routes = [
         loadComponent: () => import('@/pages/search-page/search-page').then((m) => m.SearchPage),
       },
       {
-        path: 'profile',
+        path: 'profile/:id',
         loadComponent: () => import('@/pages/profile-page/profile-page').then((m) => m.ProfilePage),
       },
     ],
