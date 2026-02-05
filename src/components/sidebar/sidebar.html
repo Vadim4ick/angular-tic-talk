@@ -1,5 +1,7 @@
 <div>
-  <img src="/logo-bg.svg" class="size-12.5 mb-5" />
+  <a [routerLink]="['/']">
+    <img src="/logo-bg.svg" class="size-12.5 mb-5" />
+  </a>
 
   <nav>
     <ul class="grid gap-2">
@@ -39,7 +41,10 @@
   </div>
 </div>
 
-<div class="flex items-center gap-3 mt-6 py-1 px-4 bg-[#161616] rounded-[2px]">
+<a
+  [routerLink]="['/profile']"
+  class="flex items-center gap-3 mt-6 py-1 px-4 hover:bg-[#161616] transition-colors rounded-[2px]"
+>
   @if (me(); as me) {
     @if (me.avatarUrl) {
       <img [src]="me.avatarUrl" [alt]="me.username" class="size-8" />
@@ -49,4 +54,4 @@
 
     <p class="text-sm font-bold">{{ me.username }}</p>
   }
-</div>
+</a>
