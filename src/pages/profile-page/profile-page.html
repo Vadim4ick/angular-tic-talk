@@ -3,7 +3,53 @@
     <app-profile-header [profile]="profile"></app-profile-header>
 
     <a [routerLink]="['/settings']" class="flex items-center gap-1">
-      Редактировать <lucide-icon name="settings2" class="size-4" />
+      <button ubButton>Редактировать <lucide-icon name="settings2" class="size-4" /></button>
     </a>
   </header>
+
+  <main class="grid grid-cols-[1fr_350px] gap-16">
+    <div></div>
+
+    <div class="flex flex-col gap-4">
+      <h5 class="text-2xl">Подписчики</h5>
+
+      <div class="flex items-center gap-1.5 mb-8">
+        @for (subscriber of subscribers$ | async; track subscriber.id) {
+          <a [routerLink]="['/profile', subscriber.id]">
+            <img [src]="subscriber.avatarUrl | imgUrl" class="size-9 rounded-full" />
+          </a>
+        }
+
+        <a [routerLink]="['/search']">
+          <div class="size-9 rounded-full bg-white flex items-center justify-center">
+            <lucide-icon name="plus" class="size-5 text-black" />
+          </div>
+        </a>
+      </div>
+
+      @if (profile.stack.length > 0) {
+        <div class="flex flex-col gap-4">
+          <h5 class="text-2xl">Навыки</h5>
+
+          <div class="flex flex-wrap gap-2">
+            @for (skill of profile.stack; track skill) {
+              <div class="px-2 py-1 rounded-sm border border-amber-50 font-bold text-sm">
+                {{ skill }}
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (profile.description) {
+        <div class="flex flex-col gap-4">
+          <h5 class="text-2xl">О себе</h5>
+
+          <div class="text-lg">
+            {{ profile.description }}
+          </div>
+        </div>
+      }
+    </div>
+  </main>
 }

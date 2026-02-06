@@ -18,10 +18,10 @@ export class Profile {
     return this.http.get<IProfile[]>(`${this.baseApiUrl}/account/test_accounts`);
   }
 
-  getSubscribers() {
+  getSubscribers(total = 3) {
     return this.http
       .get<Pageble<IProfile>>(`${this.baseApiUrl}/account/subscribers/`)
-      .pipe(map((val) => val.items.slice(0, 3)));
+      .pipe(map((val) => val.items.slice(0, total)));
   }
 
   getAccount(id: number) {

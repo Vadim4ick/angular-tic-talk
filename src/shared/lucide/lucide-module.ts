@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Settings2, LucideAngularModule } from 'lucide-angular';
+import { Settings2, LucideAngularModule, Plus } from 'lucide-angular';
 
 @NgModule({
-  imports: [LucideAngularModule.pick({ Settings2 })],
+  imports: [LucideAngularModule.pick({ Settings2, Plus })],
   exports: [LucideAngularModule],
 })
 export class IconsModule {}
