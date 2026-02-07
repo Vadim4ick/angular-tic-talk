@@ -6,6 +6,7 @@ import { UbInputDirective } from '@/shared/ui/input';
 import { UbTextAreaDirective } from '@/shared/ui/textarea';
 import { UbButtonDirective } from '@/shared/ui/button';
 import { firstValueFrom } from 'rxjs';
+import { AvatarUpload } from './avatar-upload/avatar-upload';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +16,7 @@ import { firstValueFrom } from 'rxjs';
     UbInputDirective,
     UbTextAreaDirective,
     UbButtonDirective,
+    AvatarUpload,
   ],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
