@@ -1,27 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { IProfile } from '@/shared/types/profile.types';
 import { Pageble } from '../types/pageble.types';
-import { map, tap } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Profile {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   baseApiUrl = 'https://icherniakov.ru/yt-course';
 
   me = signal<IProfile | null>(null);
 
-  getTestAccount() {
-    return this.http.get<IProfile[]>(`${this.baseApiUrl}/account/test_accounts`);
-  }
+  private subscribersAll$ = this.http
+    .get<Pageble<IProfile>>(`${this.baseApiUrl}/account/subscribers/`)
+    .pipe(
+      map((res) => res.items),
+      shareReplay({ bufferSize: 1, refCount: false }),
+    );
 
   getSubscribers(total = 3) {
-    return this.http
-      .get<Pageble<IProfile>>(`${this.baseApiUrl}/account/subscribers/`)
-      .pipe(map((val) => val.items.slice(0, total)));
+    return this.subscribersAll$.pipe(map((items) => items.slice(0, total)));
+  }
+
+  getTestAccount() {
+    return this.http.get<IProfile[]>(`${this.baseApiUrl}/account/test_accounts`);
   }
 
   getAccount(id: number) {
