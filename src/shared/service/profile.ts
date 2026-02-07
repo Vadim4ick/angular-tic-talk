@@ -37,6 +37,8 @@ export class Profile {
   }
 
   patchProfile(payload: Partial<IProfile>) {
-    return this.http.patch<IProfile>(`${this.baseApiUrl}/account/me`, payload);
+    return this.http
+      .patch<IProfile>(`${this.baseApiUrl}/account/me`, payload)
+      .pipe(tap((updated) => this.me.set(updated)));
   }
 }
