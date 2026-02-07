@@ -46,4 +46,10 @@ export class Profile {
       .patch<IProfile>(`${this.baseApiUrl}/account/me`, payload)
       .pipe(tap((updated) => this.me.set(updated)));
   }
+
+  uploadAvatar(image: FormData) {
+    return this.http
+      .post<IProfile>(`${this.baseApiUrl}/account/upload_image`, image)
+      .pipe(tap((updated) => this.me.set(updated)));
+  }
 }

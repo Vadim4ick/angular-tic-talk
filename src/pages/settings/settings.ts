@@ -34,6 +34,12 @@ export class Settings {
 
   profileService = inject(Profile);
 
+  selectedAvatar: File | null = null;
+
+  onAvatarSelected(file: File | null) {
+    this.selectedAvatar = file;
+  }
+
   profile = this.profileService.me;
 
   constructor() {
@@ -51,19 +57,26 @@ export class Settings {
     });
   }
 
-  submit() {
+  async submit() {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
 
     if (this.form.invalid) return;
 
-    firstValueFrom(
+    await firstValueFrom(
       //@ts-ignore
       this.profileService.patchProfile({
         ...this.form.value,
         stack: this.splitStack(this.form.value.stack),
       }),
     );
+
+    if (this.selectedAvatar) {
+      const fd = new FormData();
+      fd.append('image', this.selectedAvatar, this.selectedAvatar.name);
+
+      await firstValueFrom(this.profileService.uploadAvatar(fd));
+    }
   }
 
   splitStack(stack: string | null | string[] | undefined) {

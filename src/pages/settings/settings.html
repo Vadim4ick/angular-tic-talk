@@ -58,7 +58,7 @@
     <label class="flex flex-col gap-1 w-full">
       <span class="text-white/75 text-[12px] leading-4 font-medium">Аватар</span>
 
-      <app-avatar-upload></app-avatar-upload>
+      <app-avatar-upload (avatarChange)="onAvatarSelected($event)"></app-avatar-upload>
     </label>
 
     <label class="flex flex-col gap-1 w-full">

@@ -1,6 +1,6 @@
 @if (profile(); as profile) {
   @if (profile.avatarUrl) {
-    <img [src]="profile.avatarUrl" [alt]="profile.username" class="size-28" />
+    <img [src]="profile.avatarUrl | imgUrl" [alt]="profile.username" class="size-28" />
   } @else {
     <img src="/avatar.png" class="size-28" />
   }

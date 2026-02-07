@@ -48,7 +48,7 @@
 >
   @if (me(); as me) {
     @if (me.avatarUrl) {
-      <img [src]="me.avatarUrl" [alt]="me.username" class="size-8" />
+      <img [src]="me.avatarUrl | imgUrl" [alt]="me.username" class="size-8" />
     } @else {
       <img src="/avatar.png" class="size-8" />
     }
