@@ -35,4 +35,8 @@ export class Profile {
       }),
     );
   }
+
+  patchProfile(payload: Partial<IProfile>) {
+    return this.http.patch<IProfile>(`${this.baseApiUrl}/account/me`, payload);
+  }
 }

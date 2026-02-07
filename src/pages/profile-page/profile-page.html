@@ -1,5 +1,5 @@
 @if (profile$ | async; as profile) {
-  <header class="flex items-center gap-4 w-full justify-between">
+  <header class="flex items-center gap-4 w-full justify-between py-6">
     <app-profile-header [profile]="profile"></app-profile-header>
 
     <a [routerLink]="['/settings']" class="flex items-center gap-1">
@@ -7,8 +7,8 @@
     </a>
   </header>
 
-  <main class="grid grid-cols-[1fr_350px] gap-16">
-    <div></div>
+  <main class="grid grid-cols-[1fr_350px] gap-16 py-6">
+    <app-post-feed></app-post-feed>
 
     <div class="flex flex-col gap-4">
       <h5 class="text-2xl">Подписчики</h5>

@@ -1,0 +1,76 @@
+<app-profile-header [profile]="profile()"></app-profile-header>
+
+<form
+  class="p-8 border border-white bg-black flex flex-col gap-6 items-end h-full justify-between"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+  <div class="grid gap-5 w-full">
+    <div class="flex gap-5 w-full">
+      <label class="flex flex-col gap-1 w-full">
+        <span class="text-white/75 text-[12px] leading-4 font-medium">Имя</span>
+
+        <input
+          class="bg-transparent border-x-transparent border-t-transparent text-white/75 hover:bg-transparent px-0 border-b border-white rounded-none"
+          type="text"
+          ubInput
+          placeholder="Введите данные"
+          formControlName="firstName"
+        />
+      </label>
+
+      <label class="flex flex-col gap-1 w-full">
+        <span class="text-white/75 text-[12px] leading-4 font-medium">Фамилия</span>
+
+        <input
+          class="bg-transparent border-x-transparent border-t-transparent text-white/75 hover:bg-transparent px-0 border-b border-white rounded-none"
+          type="text"
+          ubInput
+          placeholder="Введите данные"
+          formControlName="lastName"
+        />
+      </label>
+    </div>
+
+    <label class="flex flex-col gap-1 w-full">
+      <span class="text-white/75 text-[12px] leading-4 font-medium">Telegram username</span>
+
+      <input
+        class="bg-transparent border-x-transparent border-t-transparent text-white/75 hover:bg-transparent px-0 border-b border-white rounded-none"
+        type="text"
+        ubInput
+        placeholder="Введите данные"
+        formControlName="username"
+      />
+    </label>
+
+    <label class="flex flex-col gap-1 w-full">
+      <span class="text-white/75 text-[12px] leading-4 font-medium">О себе</span>
+
+      <textarea
+        class="bg-transparent border-x-transparent border-t-transparent text-white/75 hover:bg-transparent px-0 border-b border-white rounded-none resize-none"
+        ubTextarea
+        placeholder="Введите данные"
+        formControlName="description"
+      ></textarea>
+    </label>
+
+    <label class="flex flex-col gap-1 w-full">
+      <span class="text-white/75 text-[12px] leading-4 font-medium">Навыки</span>
+
+      <input
+        class="bg-transparent border-x-transparent border-t-transparent text-white/75 hover:bg-transparent px-0 border-b border-white rounded-none"
+        type="text"
+        ubInput
+        placeholder="Введите данные"
+        formControlName="stack"
+      />
+    </label>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <button ubButton type="button" variant="secondary">Отмена</button>
+
+    <button ubButton type="submit">Сохранить</button>
+  </div>
+</form>

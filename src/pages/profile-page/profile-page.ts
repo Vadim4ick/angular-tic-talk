@@ -8,11 +8,20 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { IconsModule } from '@/shared/lucide/lucide-module';
 import { UbButtonDirective } from '@/shared/ui/button';
 import { ImgUrlPipe } from '@/shared/helpers/pipes/img-url-pipe';
+import { PostFeed } from '@/components/post-feed/post-feed';
 
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [ProfileHeader, AsyncPipe, IconsModule, RouterLink, UbButtonDirective, ImgUrlPipe],
+  imports: [
+    ProfileHeader,
+    AsyncPipe,
+    IconsModule,
+    RouterLink,
+    UbButtonDirective,
+    ImgUrlPipe,
+    PostFeed,
+  ],
   templateUrl: './profile-page.html',
 })
 export class ProfilePage {

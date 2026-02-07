@@ -15,6 +15,10 @@ export const routes: Routes = [
         path: 'profile/:id',
         loadComponent: () => import('@/pages/profile-page/profile-page').then((m) => m.ProfilePage),
       },
+      {
+        path: 'settings',
+        loadComponent: () => import('@/pages/settings/settings').then((m) => m.Settings),
+      },
     ],
     canActivate: [canActivateAuth],
   },
