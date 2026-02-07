@@ -1,8 +1,9 @@
-import { Component, effect, EventEmitter, Output, signal } from '@angular/core';
+import { Component, effect, EventEmitter, inject, Output, signal } from '@angular/core';
 import { IconsModule } from '@/shared/lucide/lucide-module';
 import { Dnd } from '@/shared/helpers/dirictive/dnd';
 import { FormsModule } from '@angular/forms';
 import { ImgUrlPipe } from '@/shared/helpers/pipes/img-url-pipe';
+import { Profile } from '@/shared/service/profile';
 
 @Component({
   selector: 'app-avatar-upload',
@@ -11,11 +12,20 @@ import { ImgUrlPipe } from '@/shared/helpers/pipes/img-url-pipe';
   styleUrl: './avatar-upload.scss',
 })
 export class AvatarUpload {
+  profileService = inject(Profile);
+
   preview = signal<string>('/avatar.png');
 
-  @Output() avatarChange = new EventEmitter<File | null>();
+  constructor() {
+    effect(() => {
+      const me = this.profileService.me();
+      if (!me) return;
 
-  private avatarFile: File | null = null;
+      this.preview.set(me.avatarUrl ?? '/avatar.png');
+    });
+  }
+
+  @Output() avatarChange = new EventEmitter<File | null>();
 
   fileBrowserHandler(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -32,7 +42,6 @@ export class AvatarUpload {
   private processFile(file: File | null) {
     if (!file || !file.type.startsWith('image/')) return;
 
-    this.avatarFile = file;
     this.avatarChange.emit(file);
 
     const reader = new FileReader();

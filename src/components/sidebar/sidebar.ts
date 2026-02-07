@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AsyncPipe, JsonPipe, NgComponentOutlet } from '@angular/common';
+import { AsyncPipe, NgComponentOutlet } from '@angular/common';
 import { sidebarMenu } from '@/shared/const/navbar.const';
 import { RouterLink } from '@angular/router';
 import { Profile } from '@/shared/service/profile';
