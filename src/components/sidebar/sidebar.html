@@ -7,7 +7,8 @@
     <ul class="grid gap-2">
       @for (item of sidebarMenu; track item.id) {
         <li class="py-2 px-4 hover:bg-[#161616] rounded-[2px] cursor-pointer group">
-          <button
+          <a
+            [routerLink]="item.link"
             class="flex items-center gap-2 cursor-pointer text-white group-hover:text-[#AE7AFF] transition-all"
           >
             <ng-container
@@ -20,7 +21,7 @@
             ></ng-container>
 
             <span>{{ item.title }}</span>
-          </button>
+          </a>
         </li>
       }
     </ul>
